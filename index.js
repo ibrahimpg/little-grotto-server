@@ -6,27 +6,20 @@ require('dotenv').config();
 
 const { MongoClient } = require('mongodb');
 
-// Database Connection and Variable Export
-
 let db;
 
-MongoClient.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
-  .then((cluster) => { db = cluster.db('database'); })
+MongoClient.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then((cluster) => { db = cluster.db("heroku_1gfx2145"); })
   .then(() => app.listen(process.env.PORT || 8888))
+  .then(() => console.log("connected..."))
   .catch(err => console.log(err));
 
 exports.db = () => db;
 
-// Route Logic
-
-// const loginUser = require('./controllers/loginUser');
-const registerUser = require('./controllers/registerUser');
-// const deleteUser = require('./controllers/deleteUser');
-const verifyEmail = require('./controllers/verifyEmail');
-const resendEmail = require('./controllers/resendEmail');
-// const verifyToken = require('./controllers/verifyToken');
-
-// The API Structure
+const viewCandles = require('./controllers/viewCandles');
+const viewUnapproved = require('./controllers/viewUnapproved');
+const submitCandle = require('./controllers/submitCandle');
+const approveCandle = require('./controllers/approveCandle');
 
 app.use(express.json());
 
@@ -37,15 +30,10 @@ app.use((req, res, next) => {
   next();
 });
 
-// app.post('/login', loginUser);
-app.post('/register', registerUser);
-// app.post('/delete', verifyToken, deleteUser);
-app.get('/verify/:username/:randomId', verifyEmail);
-app.post('/resend', resendEmail);
-
-// the resend route can be recycled to create the reset password route
-
-// this error handling below needs testing. it doesn't seem to actually be useful.
+app.get('/view', viewCandles);
+app.get('/viewunapproved', viewUnapproved);
+app.post('/submit', submitCandle);
+app.get('/approve/:identifier', approveCandle);
 
 app.use((req, res, next) => {
   const error = new Error('Route not available.');
