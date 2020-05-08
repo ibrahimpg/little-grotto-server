@@ -21,8 +21,8 @@ const viewUnapproved = require('./controllers/viewUnapproved');
 const submitCandle = require('./controllers/submitCandle');
 const approveCandle = require('./controllers/approveCandle');
 
-app.use(express.json());
 app.use(express.urlencoded({ extended: true })); 
+app.use(express.json());
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*' /* process.env.CLIENT_URL */);
