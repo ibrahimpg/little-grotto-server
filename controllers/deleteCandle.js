@@ -1,7 +1,7 @@
 const database = require('../index');
 
 module.exports = (req, res) => {
-  database.db().collection('candles').updateOne({ identifier: req.params.identifier }, { $set: { approved: true } })
+  database.db().collection('candles').deleteOne({ identifier: req.params.identifier })
     .then(() => res.redirect('https://littlegrotto.com/candles-awaiting-approval/'))
     .catch(err => console.log(err));
 };

@@ -20,6 +20,7 @@ const viewCandles = require('./controllers/viewCandles');
 const viewUnapproved = require('./controllers/viewUnapproved');
 const submitCandle = require('./controllers/submitCandle');
 const approveCandle = require('./controllers/approveCandle');
+const deleteCandle = require('./controllers/deleteCandle');
 
 app.use(express.urlencoded({ extended: true })); 
 // app.use(express.json());
@@ -35,6 +36,7 @@ app.get('/view', viewCandles);
 app.get('/viewunapproved', viewUnapproved);
 app.post('/submit', submitCandle);
 app.get('/approve/:identifier', approveCandle);
+app.get('/delete/:identifier', deleteCandle);
 
 app.use((req, res, next) => {
   const error = new Error('Route not available.');
