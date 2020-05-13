@@ -20,6 +20,6 @@ module.exports = (req, res) => {
     intention: req.body.candleIntention,
     approved: false,
   })
-    .then(() => res.redirect('https://littlegrotto.com/new-candle-page'))
+    .then(() => res.redirect('https://littlegrotto.com/candles'))
     .catch(err => console.log(err));
 };
