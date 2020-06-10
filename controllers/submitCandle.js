@@ -18,6 +18,7 @@ module.exports = (req, res) => {
     name: req.body.candleName,
     title: req.body.candleTitle,
     intention: req.body.candleIntention,
+    friends: req.body.candleFriends,
     approved: false,
   })
     .then(() => res.redirect('https://littlegrotto.com/candles'))
