@@ -36,7 +36,7 @@ Click here to approve or delete this candle:
     .then(() => res.status(200).json({ msg: 'Sent!' }))
     .catch(() => res.status(500).json({ msg: 'Error!' }));
 
-});
+};
 /*
   database.db().collection('candles').insertOne({
     identifier: (Math.random()*10000000).toFixed(0).toString().substring(0, 5),
