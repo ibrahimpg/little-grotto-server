@@ -47,7 +47,7 @@ module.exports = (req, res) => {
         friends: req.body.candleFriends,
         approved: false,
       })
-    }))
+    })
     .then(() => res.redirect('https://littlegrotto.com/candles'))
     .catch(() => res.status(500).json({ msg: 'Error!' }));
 
