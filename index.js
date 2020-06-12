@@ -6,6 +6,8 @@ const cors = require('cors');
 
 require('dotenv').config();
 
+app.use(cors())
+
 const { MongoClient } = require('mongodb');
 
 let db;
@@ -34,8 +36,6 @@ app.use((req, res, next) => {
   next();
 });
 */
-
-app.use(cors())
 
 app.get('/view', viewCandles);
 app.get('/viewunapproved', viewUnapproved);
