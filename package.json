@@ -1,7 +1,7 @@
 {
-  "name": "lgbackend",
+  "name": "little-grotto-server",
   "version": "1.0.0",
-  "description": "Little Grotto server side functionality",
+  "description": "Little Grotto server-side functionality",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ibrahimpg/lgbackend.git"
+    "url": "git+https://github.com/ibrahimpg/little-grotto-server.git"
   },
   "author": "Ibrahim PG",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ibrahimpg/lgbackend/issues"
+    "url": "https://github.com/ibrahimpg/little-grotto-server/issues"
   },
-  "homepage": "https://github.com/ibrahimpg/lgbackend#readme",
+  "homepage": "https://github.com/ibrahimpg/little-grotto-server#readme",
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
