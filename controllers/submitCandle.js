@@ -18,20 +18,19 @@ module.exports = (req, res) => {
 
   transporter.sendMail({
     from: '"Little Grotto" <sender@thehealingvoices.org>',
-    to: 'ibrahimpg@outlook.com',
+    to: 'sender@thehealingvoices.org',
     subject: 'Someone submitted a candle on The Little Grotto!',
     text: `
-${req.body.name},
-Candle Details
----
-"${req.body.candleName}"
-"${req.body.candleCity}, ${req.body.candleState}, ${req.body.candleCountry}"
-"${req.body.candleTitle}"
-"${req.body.candleIntention}"
+      Candle Details
+      ---
+      ${req.body.candleName}
+      ${req.body.candleCity}, ${req.body.candleState}, ${req.body.candleCountry}
+      ${req.body.candleTitle}
+      ${req.body.candleIntention}
 
-Click here to approve or delete this candle:
-"https://littlegrotto.com/candles-awaiting-approval"
-`,
+      Click here to approve or delete this candle:
+      https://littlegrotto.com/candles-awaiting-approval
+    `,
   })
     .then(() => res.status(200).json({ msg: 'Sent!' }))
     .catch(() => res.status(500).json({ msg: 'Error!' }));
@@ -54,5 +53,5 @@ Click here to approve or delete this candle:
   })
     .then(() => res.redirect('https://littlegrotto.com/candles'))
     .catch(err => console.log(err));
-};
+
 */
