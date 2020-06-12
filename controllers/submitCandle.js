@@ -18,7 +18,7 @@ module.exports = (req, res) => {
 
   transporter.sendMail({
     from: '"Little Grotto" <sender@thehealingvoices.org>',
-    to: 'sender@thehealingvoices.org',
+    to: process.env.RECEIVER_EMAIL,
     subject: 'Someone submitted a candle on The Little Grotto!',
     text: `
       Candle Details
