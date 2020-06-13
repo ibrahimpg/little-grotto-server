@@ -49,7 +49,7 @@ module.exports = (req, res) => {
               Head over to <a href="https://littlegrotto.com">the Little Grotto</a> and light a candle of your own!
               </p>
             `,
-          }))
+          })
           .catch(err => console.log(err));
       }
       // return res.sendStatus(400);
