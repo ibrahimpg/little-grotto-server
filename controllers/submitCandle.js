@@ -41,11 +41,9 @@ module.exports = (req, res) => {
             html: `
               <img src="http://littlegrotto.com/wp-content/uploads/2020/05/newcandlegif.gif" width=200 alt="burning candle" />
               <p>
-              ${req.body.candleName}<br>
-              ${req.body.candleCity}, ${req.body.candleState}, ${req.body.candleCountry}<br>
-              ${req.body.candleTitle}<br>
+              ${req.body.candleName}<br><br>
+              ${req.body.candleTitle}<br><br>
               ${req.body.candleIntention}<br><br>
-
               Head over to <a href="https://littlegrotto.com">the Little Grotto</a> and light a candle of your own!
               </p>
             `,
