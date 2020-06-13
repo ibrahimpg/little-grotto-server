@@ -33,6 +33,24 @@ module.exports = (req, res) => {
     `,
   })
     .then(() => {
+      transporter.sendMail({
+        from: '"Little Grotto" <sender@thehealingvoices.org>',
+        to: req.body.candleFriends[0],
+        subject: 'Someone sent you a candle on The Little Grotto!',
+        html: `
+          <img src="http://littlegrotto.com/wp-content/uploads/2020/05/newcandlegif.gif" width=200 alt="burning candle" />
+          <p>
+          ${req.body.candleName}
+          ${req.body.candleCity}, ${req.body.candleState}, ${req.body.candleCountry}
+          ${req.body.candleTitle}
+          ${req.body.candleIntention}
+
+          Head over to <a href="https://littlegrotto.com">the Little Grotto</a> and light a candle of your own!
+          </p>
+        `,
+      })
+    })
+    .then(() => {
       database.db().collection('candles').insertOne({
         identifier: (Math.random()*10000000).toFixed(0).toString().substring(0, 5),
         epoch: Date.now(),
