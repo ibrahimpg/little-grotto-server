@@ -52,6 +52,44 @@ module.exports = (req, res) => {
       }
     })
     .then(() => {
+      if (/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(req.body.candleFriends[1]) === true) {
+          return transporter.sendMail({
+            from: '"Little Grotto" <sender@thehealingvoices.org>',
+            to: req.body.candleFriends[0],
+            subject: 'Someone sent you a candle on The Little Grotto!',
+            html: `
+              <img src="http://littlegrotto.com/wp-content/uploads/2020/05/newcandlegif.gif" width=200 alt="burning candle" />
+              <p>
+              ${req.body.candleName}<br><br>
+              ${req.body.candleTitle}<br><br>
+              ${req.body.candleIntention}<br><br>
+              Head over to <a href="https://littlegrotto.com">the Little Grotto</a> and light a candle of your own!<br><br>
+              </p>
+            `,
+          })
+          .catch(err => console.log(err));
+      }
+    })
+    .then(() => {
+      if (/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(req.body.candleFriends[2]) === true) {
+          return transporter.sendMail({
+            from: '"Little Grotto" <sender@thehealingvoices.org>',
+            to: req.body.candleFriends[0],
+            subject: 'Someone sent you a candle on The Little Grotto!',
+            html: `
+              <img src="http://littlegrotto.com/wp-content/uploads/2020/05/newcandlegif.gif" width=200 alt="burning candle" />
+              <p>
+              ${req.body.candleName}<br><br>
+              ${req.body.candleTitle}<br><br>
+              ${req.body.candleIntention}<br><br>
+              <b>Head over to <a href="https://littlegrotto.com">the Little Grotto</a> and light a candle of your own!</b>
+              </p>
+            `,
+          })
+          .catch(err => console.log(err));
+      }
+    })
+    .then(() => {
       database.db().collection('candles').insertOne({
         identifier: (Math.random()*10000000).toFixed(0).toString().substring(0, 5),
         epoch: Date.now(),
