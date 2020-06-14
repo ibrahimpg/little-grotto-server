@@ -33,6 +33,23 @@ module.exports = (req, res) => {
     `,
   })
     .then(() => {
+
+      const mailChimpData = {
+        email_address: req.body.candleEmail,
+        status: 'subscribed', 
+      };
+      fetch('https://usX.api.mailchimp.com/3.0/lists/0674bb94a2/members', {
+        method: 'POST',
+        headers: {
+          'Authorization': process.env.MAILCHIMP_AUTH,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(mailChimpData),
+      })
+        .catch(err => console.log(err));
+
+    })
+    .then(() => {
       if (/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(req.body.candleFriends[0]) === true) {
           return transporter.sendMail({
             from: '"Little Grotto" <sender@thehealingvoices.org>',
