@@ -32,7 +32,7 @@ module.exports = (req, res) => {
       https://littlegrotto.com/candles-awaiting-approval
     `,
   })
-    .then(() => {
+   /* .then(() => {
 
       const mailChimpData = {
         email_address: req.body.candleEmail,
@@ -48,7 +48,7 @@ module.exports = (req, res) => {
       })
         .catch(err => console.log(err));
 
-    })
+    }) */
     .then(() => {
       if (/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(req.body.candleFriends[0]) === true) {
           return transporter.sendMail({
