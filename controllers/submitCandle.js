@@ -36,18 +36,19 @@ module.exports = (req, res) => {
   })
     .then(() => {
 
-      fetchUrl('http://usX.api.mailchimp.com/3.0/lists/0674bb94a2/members', {
-        method: 'POST',
+      fetchUrl('http://us12.api.mailchimp.com/3.0/lists/0674bb94a2', {
+        method: 'GET',
         headers: {
           'Authorization': process.env.MAILCHIMP_AUTH,
           'Content-Type': 'application/json',
         },
-        body: {
+        /*body: {
           email_address: req.body.candleEmail,
           status: 'subscribed', 
-        },
+        },*/
       })
-        .catch(err => console.log(err));
+      .then((response => console.log(response))
+      .catch(err => console.log(err));
 
     })
     .then(() => {
