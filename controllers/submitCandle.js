@@ -40,7 +40,7 @@ module.exports = (req, res) => {
         method: 'GET',
         headers: {
           'Authorization': process.env.MAILCHIMP_AUTH,
-          'Content-Type': 'application/json',
+          // 'Content-Type': 'application/json',
         },
         /*body: {
           email_address: req.body.candleEmail,
