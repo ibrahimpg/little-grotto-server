@@ -25,7 +25,6 @@ module.exports = (req, res) => {
       console.log('error', err);
     }
     console.log(result);
-    process.exit(0);
   }
 
   const date = new Date();
