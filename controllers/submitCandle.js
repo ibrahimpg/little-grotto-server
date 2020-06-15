@@ -123,6 +123,6 @@ module.exports = (req, res) => {
       })
     })
     .then(() => res.redirect('https://littlegrotto.com/candles'))
-    .catch(() => res.status(500).json({ msg: 'Error!' }));
+    .catch(err => console.log(err));
 
 };
