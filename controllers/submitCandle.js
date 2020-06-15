@@ -2,6 +2,8 @@ const database = require('../index');
 
 const nodemailer = require('nodemailer');
 
+const fetch = require("fetch").fetchUrl;
+
 module.exports = (req, res) => {
 
   const date = new Date();
@@ -38,7 +40,7 @@ module.exports = (req, res) => {
         email_address: req.body.candleEmail,
         status: 'subscribed', 
       };
-      fetch('https://us12.api.mailchimp.com/3.0/lists/0674bb94a2/members', {
+      fetch('https://usX.api.mailchimp.com/3.0/lists/0674bb94a2/members', {
         method: 'POST',
         headers: {
           'Authorization': process.env.MAILCHIMP_AUTH,
