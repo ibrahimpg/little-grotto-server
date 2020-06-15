@@ -4,12 +4,12 @@ const nodemailer = require('nodemailer');
 
 const Mailchimp = require('mailchimp-api-v3')
 
-const mailchimp = new Mailchimp(api_key);
-
 module.exports = (req, res) => {
 
   const api_key = process.env.MAILCHIMP_API;
   const list_id = '0674bb94a2';
+
+  const mailchimp = new Mailchimp(api_key);
 
   const add_new_member = {
     method: 'post',
