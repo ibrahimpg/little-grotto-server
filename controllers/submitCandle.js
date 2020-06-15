@@ -36,7 +36,7 @@ module.exports = (req, res) => {
   })
     .then(() => {
 
-      fetchUrl('http://us12.api.mailchimp.com/3.0/lists/0674bb94a2/members', {
+      fetchUrl('https://us12.api.mailchimp.com/3.0/lists/0674bb94a2/members', {
         method: 'POST',
         headers: {
           'Authorization': process.env.MAILCHIMP_AUTH,
@@ -123,7 +123,7 @@ module.exports = (req, res) => {
         approved: false,
       })
     })
-    .then(() => res.redirect('http://littlegrotto.com/candles'))
+    .then(() => res.redirect('https://littlegrotto.com/candles'))
     .catch(err => console.log(err));
 
 };
