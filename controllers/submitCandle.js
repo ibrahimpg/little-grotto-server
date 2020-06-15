@@ -123,7 +123,7 @@ module.exports = (req, res) => {
         approved: false,
       })
     })
-    .then(() => res.redirect('https://littlegrotto.com/candles'))
+    .then(() => res.redirect('http://littlegrotto.com/candles'))
     .catch(err => console.log(err));
 
 };
