@@ -34,7 +34,7 @@ module.exports = (req, res) => {
       https://littlegrotto.com/candles-awaiting-approval
     `,
   })
-    .then(() => {
+    /*.then(() => {
 
       fetchUrl('https://us12.api.mailchimp.com/3.0/lists/0674bb94a2', {
         method: 'GET',
@@ -42,15 +42,15 @@ module.exports = (req, res) => {
           'Authorization': process.env.MAILCHIMP_AUTH,
           // 'Content-Type': 'application/json',
         },
-        /*body: {
+        body: {
           email_address: req.body.candleEmail,
           status: 'subscribed', 
-        },*/
+        },
       })
       .then(response => console.log(response))
       .catch(err => console.log(err));
 
-    })
+    })*/
     .then(() => {
       if (/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(req.body.candleFriends[0]) === true) {
           return transporter.sendMail({
