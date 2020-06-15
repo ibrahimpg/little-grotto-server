@@ -11,21 +11,7 @@ module.exports = (req, res) => {
 
   database.db().collection('candles').updateOne({ identifier: req.params.identifier }, { $set: { approved: true } })
   .then(() => database.db().collection('candles').findOne({ identifier: req.params.identifier }))
-  .then((candle) => console.log(candle.email))
-   /* .then(() => {
-      database.db().collection('candles').findOne({ identifier: req.params.identifier })
-        .then((candle) => {
-          console.log(candle.email);
-          return mailchimp.request({
-            method: 'post',
-            path: `/lists/${list_id}/members`,
-            body: {
-              email_address: req.body.candleEmail,
-              status: 'subscribed'
-            }
-          });
-        })
-    }) */
-    .then(() => res.redirect('https://littlegrotto.com/candles-awaiting-approval/'))
-    .catch(err => console.log(err));
+  .then((candle) => mailchimp.request({ method: 'post', path: `/lists/${list_id}/members`, body: { email_address: req.body.candleEmail, status: 'subscribed' }}))
+  .then(() => res.redirect('https://littlegrotto.com/candles-awaiting-approval/'))
+  .catch(err => console.log(err));
 };

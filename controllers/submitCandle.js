@@ -2,23 +2,7 @@ const database = require('../index');
 
 const nodemailer = require('nodemailer');
 
-const Mailchimp = require('mailchimp-api-v3')
-
 module.exports = (req, res) => {
-
-  const api_key = process.env.MAILCHIMP_API;
-  const list_id = '0674bb94a2';
-
-  const mailchimp = new Mailchimp(api_key);
-
-  const add_new_member = {
-    method: 'post',
-    path: `/lists/${list_id}/members`,
-    body: {
-      email_address: req.body.candleEmail,
-      status: 'subscribed'
-    }
-  }
 
   const date = new Date();
   const day = date.getDate();
@@ -32,8 +16,8 @@ module.exports = (req, res) => {
     auth: { user: 'sender@thehealingvoices.org', pass: process.env.EMAIL_PASS },
   });
   
-  mailchimp.request(add_new_member)
-  .then(() => {
+ /* mailchimp.request(add_new_member)
+  .then(() => {*/
     transporter.sendMail({
       from: '"Little Grotto" <sender@thehealingvoices.org>',
       to: process.env.RECEIVER_EMAIL,
@@ -50,7 +34,7 @@ module.exports = (req, res) => {
         https://littlegrotto.com/candles-awaiting-approval
       `,
     })
-  })
+  // })
     .then(() => {
       if (/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(req.body.candleFriends[0]) === true) {
           return transporter.sendMail({
