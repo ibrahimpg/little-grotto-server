@@ -2,9 +2,31 @@ const database = require('../index');
 
 const nodemailer = require('nodemailer');
 
-const fetchUrl = require('fetch').fetchUrl;
+const Mailchimp = require('mailchimp-api-v3')
+
+const mailchimp = new Mailchimp(api_key);
 
 module.exports = (req, res) => {
+
+  const api_key = process.env.MAILCHIMP_API;
+  const list_id = '0674bb94a2';
+
+  const add_new_member = {
+    method: 'post',
+    path: `/lists/${list_id}/members`,
+    body: {
+      email_address: req.body.candleEmail,
+      status: 'subscribed'
+    }
+  }
+
+  const callback = function (err, result) {
+    if (err) {
+      console.log('error', err);
+    }
+    console.log(result);
+    process.exit(0);
+  }
 
   const date = new Date();
   const day = date.getDate();
@@ -17,39 +39,26 @@ module.exports = (req, res) => {
     secure: true,
     auth: { user: 'sender@thehealingvoices.org', pass: process.env.EMAIL_PASS },
   });
+  
+  mailchimp.request(add_new_member, callback)
+  .then(() => {
+    transporter.sendMail({
+      from: '"Little Grotto" <sender@thehealingvoices.org>',
+      to: process.env.RECEIVER_EMAIL,
+      subject: 'Someone submitted a candle on The Little Grotto!',
+      text: `
+        Candle Details
+        ---
+        ${req.body.candleName}
+        ${req.body.candleCity}, ${req.body.candleState}, ${req.body.candleCountry}
+        ${req.body.candleTitle}
+        ${req.body.candleIntention}
 
-  transporter.sendMail({
-    from: '"Little Grotto" <sender@thehealingvoices.org>',
-    to: process.env.RECEIVER_EMAIL,
-    subject: 'Someone submitted a candle on The Little Grotto!',
-    text: `
-      Candle Details
-      ---
-      ${req.body.candleName}
-      ${req.body.candleCity}, ${req.body.candleState}, ${req.body.candleCountry}
-      ${req.body.candleTitle}
-      ${req.body.candleIntention}
-
-      Click here to approve or delete this candle:
-      https://littlegrotto.com/candles-awaiting-approval
-    `,
-  })
-    .then(() => {
-
-      fetchUrl('https://us12.api.mailchimp.com/3.0/lists/0674bb94a2/members', {
-        method: 'POST',
-        headers: {
-          'Authorization': process.env.MAILCHIMP_AUTH,
-          'Content-Type': 'application/json',
-        },
-        body: [{
-          email_address: req.body.candleEmail,
-          status: 'subscribed', 
-        }],
-      })
-      .catch(err => console.log(err));
-
+        Click here to approve or delete this candle:
+        https://littlegrotto.com/candles-awaiting-approval
+      `,
     })
+  })
     .then(() => {
       if (/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(req.body.candleFriends[0]) === true) {
           return transporter.sendMail({
@@ -125,5 +134,4 @@ module.exports = (req, res) => {
     })
     .then(() => res.redirect('https://littlegrotto.com/candles'))
     .catch(err => console.log(err));
-
 };
