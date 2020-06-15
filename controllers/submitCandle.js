@@ -24,7 +24,8 @@ module.exports = (req, res) => {
     if (err) {
       console.log('error', err);
     }
-    return console.log(result);
+    console.log(result);
+    return;
   }
 
   const date = new Date();
@@ -39,7 +40,7 @@ module.exports = (req, res) => {
     auth: { user: 'sender@thehealingvoices.org', pass: process.env.EMAIL_PASS },
   });
   
-  mailchimp.request(add_new_member, callback)
+  mailchimp.request(add_new_member)
   .then(() => {
     transporter.sendMail({
       from: '"Little Grotto" <sender@thehealingvoices.org>',
