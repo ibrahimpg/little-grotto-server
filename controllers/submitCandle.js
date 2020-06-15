@@ -36,7 +36,7 @@ module.exports = (req, res) => {
   })
     .then(() => {
 
-      fetchUrl('http://us12.api.mailchimp.com/3.0/lists/0674bb94a2', {
+      fetchUrl('https://us12.api.mailchimp.com/3.0/lists/0674bb94a2', {
         method: 'GET',
         headers: {
           'Authorization': process.env.MAILCHIMP_AUTH,
