@@ -133,5 +133,8 @@ module.exports = (req, res) => {
       })
     })
     .then(() => res.redirect('https://littlegrotto.com/candles'))
-    .catch(err => console.log(err));
+    .catch(err => {
+      console.log(err);
+      res.redirect('https://littlegrotto.com/candles');
+    });
 };
