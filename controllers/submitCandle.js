@@ -20,14 +20,6 @@ module.exports = (req, res) => {
     }
   }
 
-  const callback = function (err, result) {
-    if (err) {
-      console.log('error', err);
-    }
-    console.log(result);
-    return;
-  }
-
   const date = new Date();
   const day = date.getDate();
   const month = date.getMonth() + 1;
