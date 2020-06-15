@@ -2,7 +2,7 @@ const database = require('../index');
 
 const nodemailer = require('nodemailer');
 
-const fetch = require("fetch").fetchUrl;
+const fetchUrl = require('fetch').fetchUrl;
 
 module.exports = (req, res) => {
 
@@ -36,17 +36,16 @@ module.exports = (req, res) => {
   })
     .then(() => {
 
-      const mailChimpData = {
-        email_address: req.body.candleEmail,
-        status: 'subscribed', 
-      };
-      fetch('https://usX.api.mailchimp.com/3.0/lists/0674bb94a2/members', {
+      fetchUrl('https://usX.api.mailchimp.com/3.0/lists/0674bb94a2/members', {
         method: 'POST',
         headers: {
           'Authorization': process.env.MAILCHIMP_AUTH,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(mailChimpData),
+        body: {
+          email_address: req.body.candleEmail,
+          status: 'subscribed', 
+        },
       })
         .catch(err => console.log(err));
 
