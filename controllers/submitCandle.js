@@ -105,7 +105,7 @@ module.exports = (req, res) => {
         title: req.body.candleTitle,
         intention: req.body.candleIntention,
         friends: req.body.candleFriends,
-        newsletter: req.body.candleNewsletter
+        newsletter: req.body.candleNewsletter,
         approved: false,
       })
     })
