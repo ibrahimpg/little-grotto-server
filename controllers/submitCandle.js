@@ -15,9 +15,7 @@ module.exports = (req, res) => {
     secure: true,
     auth: { user: 'sender@thehealingvoices.org', pass: process.env.EMAIL_PASS },
   });
-  
- /* mailchimp.request(add_new_member)
-  .then(() => {*/
+
     transporter.sendMail({
       from: '"Little Grotto" <sender@thehealingvoices.org>',
       to: process.env.RECEIVER_EMAIL,
@@ -33,64 +31,6 @@ module.exports = (req, res) => {
         Click here to approve or delete this candle:
         https://littlegrotto.com/candles-awaiting-approval
       `,
-    })
-  // })
-    .then(() => {
-      if (/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(req.body.candleFriends[0]) === true) {
-          return transporter.sendMail({
-            from: '"Little Grotto" <sender@thehealingvoices.org>',
-            to: req.body.candleFriends[0],
-            subject: 'Someone sent you a candle on The Little Grotto!',
-            html: `
-              <img src="http://littlegrotto.com/wp-content/uploads/2020/05/newcandlegif.gif" width=200 alt="burning candle" />
-              <p>
-              ${req.body.candleName}<br><br>
-              ${req.body.candleTitle}<br><br>
-              ${req.body.candleIntention}<br><br>
-              Head over to <a href="https://littlegrotto.com">the Little Grotto</a> and light a candle of your own!<br><br>
-              </p>
-            `,
-          })
-          .catch(err => console.log(err));
-      }
-    })
-    .then(() => {
-      if (/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(req.body.candleFriends[1]) === true) {
-          return transporter.sendMail({
-            from: '"Little Grotto" <sender@thehealingvoices.org>',
-            to: req.body.candleFriends[0],
-            subject: 'Someone sent you a candle on The Little Grotto!',
-            html: `
-              <img src="http://littlegrotto.com/wp-content/uploads/2020/05/newcandlegif.gif" width=200 alt="burning candle" />
-              <p>
-              ${req.body.candleName}<br><br>
-              ${req.body.candleTitle}<br><br>
-              ${req.body.candleIntention}<br><br>
-              Head over to <a href="https://littlegrotto.com">the Little Grotto</a> and light a candle of your own!<br><br>
-              </p>
-            `,
-          })
-          .catch(err => console.log(err));
-      }
-    })
-    .then(() => {
-      if (/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(req.body.candleFriends[2]) === true) {
-          return transporter.sendMail({
-            from: '"Little Grotto" <sender@thehealingvoices.org>',
-            to: req.body.candleFriends[0],
-            subject: 'Someone sent you a candle on The Little Grotto!',
-            html: `
-              <img src="http://littlegrotto.com/wp-content/uploads/2020/05/newcandlegif.gif" width=200 alt="burning candle" />
-              <p>
-              ${req.body.candleName}<br><br>
-              ${req.body.candleTitle}<br><br>
-              ${req.body.candleIntention}<br><br>
-              Head over to <a href="https://littlegrotto.com">the Little Grotto</a> and light a candle of your own!<br><br>
-              </p>
-            `,
-          })
-          .catch(err => console.log(err));
-      }
     })
     .then(() => {
       database.db().collection('candles').insertOne({
