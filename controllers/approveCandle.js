@@ -48,7 +48,7 @@ module.exports = (req, res) => {
               <p>
               ${candle.name}<br><br>
               ${candle.title}<br><br>
-              ${req.body.intention}<br><br>
+              ${candle.intention}<br><br>
               Head over to <a href="https://littlegrotto.com">the Little Grotto</a> and light a candle of your own!<br><br>
               </p>
             `,
@@ -68,7 +68,7 @@ module.exports = (req, res) => {
                 <p>
                 ${candle.name}<br><br>
                 ${candle.title}<br><br>
-                ${req.body.intention}<br><br>
+                ${candle.intention}<br><br>
                 Head over to <a href="https://littlegrotto.com">the Little Grotto</a> and light a candle of your own!<br><br>
                 </p>
               `,
@@ -88,7 +88,7 @@ module.exports = (req, res) => {
                 <p>
                 ${candle.name}<br><br>
                 ${candle.title}<br><br>
-                ${req.body.intention}<br><br>
+                ${candle.intention}<br><br>
                 Head over to <a href="https://littlegrotto.com">the Little Grotto</a> and light a candle of your own!<br><br>
                 </p>
               `,
