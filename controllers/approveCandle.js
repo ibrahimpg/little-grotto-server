@@ -34,7 +34,7 @@ module.exports = (req, res) => {
           Your candle has been approved!
 
           Click here to see your candle:
-          https://littlegrotto.com/candles
+          ${candle.grottoUrl}
         `,
       })
       .then(() => {
