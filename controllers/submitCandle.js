@@ -29,7 +29,7 @@ module.exports = (req, res) => {
         ${req.body.candleIntention}
 
         Click here to approve or delete this candle:
-        littlegrotto.com/candles-awaiting-approval
+        littlegrotto.com/candles-awaiting-approval/${process.env.UNAPPROVED_VIEW_PW}
       `,
     })
     .then(() => {
