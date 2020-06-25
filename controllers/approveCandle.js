@@ -100,6 +100,6 @@ module.exports = (req, res) => {
     }
     return;
   })
-  .then(() => res.redirect('https://littlegrotto.com/candles-awaiting-approval/'))
+  .then(() => res.redirect(`https://littlegrotto.com/candles-awaiting-approval/?viewunapprovedpw=${process.env.UNAPPROVED_VIEW_PW}`))
   .catch(err => console.log(err));
 };
