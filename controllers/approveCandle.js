@@ -30,11 +30,10 @@ module.exports = (req, res) => {
         from: '"Little Grotto" <sender@thehealingvoices.org>',
         to: candle.email,
         subject: 'Your candle has been approved on The Little Grotto!',
-        text: `
-          Your candle has been approved!
+        html: `
+          Your candle on the Little Grotto has been approved!
 
-          Click here to see your candle:
-          ${candle.grottoUrl}
+          View your candle <a href="${candle.grottoUrl}">here</a>.<br><br>
         `,
       })
       .then(() => {
