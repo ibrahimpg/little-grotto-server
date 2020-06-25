@@ -33,7 +33,7 @@ app.use((req, res, next) => {
 });
 
 app.get('/view', viewCandles);
-app.get('/viewunapproved', viewUnapproved);
+app.get('/viewunapproved/:entrypw', viewUnapproved);
 app.post('/submit', submitCandle);
 app.get('/approve/:identifier', approveCandle);
 app.get('/delete/:identifier', deleteCandle);
