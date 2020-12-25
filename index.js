@@ -9,7 +9,7 @@ const { MongoClient } = require('mongodb');
 let db;
 
 MongoClient.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then((cluster) => { db = cluster.db("heroku_1gfx2145"); })
+  .then((cluster) => { db = cluster.db("grotto"); })
   .then(() => app.listen(process.env.PORT || 8888))
   .then(() => console.log("connected..."))
   .catch(err => console.log(err));
