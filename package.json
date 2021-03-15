@@ -1,7 +1,7 @@
 {
   "name": "little-grotto-server",
   "version": "1.0.0",
-  "description": "Little Grotto server-side functionality",
+  "description": "Little Grotto server-side candle functionality",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
